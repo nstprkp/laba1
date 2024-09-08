@@ -94,7 +94,7 @@ public class Complex {
     public Complex div(Complex b) {
         Complex a = this;
         double denominator = b.re * b.re + b.im * b.im;
-        double real = (a.re * b.re - a.im * b.im) / denominator;
+        double real = (a.re * b.re + a.im * b.im) / denominator;
         double imag = (b.re * a.im - a.re * b.im) / denominator;
         re = real;
         im = imag;
