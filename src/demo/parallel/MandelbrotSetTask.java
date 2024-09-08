@@ -31,6 +31,7 @@
 package demo.parallel;
 
 
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 import javafx.concurrent.Task;
@@ -275,7 +276,10 @@ class MandelbrotSetTask extends Task<Long> {
         int count = 0;
         Complex c = new Complex(0, 0);
         do {
-             c = c.times(c).times(c).plus(comp).plus(comp);
+            Complex f = comp.times(comp).plus(new Complex(0.1, 0));
+            Complex fPrime = new Complex(5, 0).times(comp.times(comp));
+
+            c = c.minus(f.div(fPrime.minus(comp.plus(new Complex(3, 0)))));
             count++;
         } while (count < CAL_MAX_COUNT && c.lengthSQ() < LENGTH_BOUNDARY);
         return count;
